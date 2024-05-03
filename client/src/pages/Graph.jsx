@@ -1,24 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import GraphVisualization from './GraphVisualization';
 
 const Graph = () => {
-  // Dummy data for testing
-  const data = [
-    {
-      topic: 'Morphological Analysis_metadata',
-      paper: 'Vashantor: A Large-scale Multilingual Benchmark Dataset for Automated Translation of Bangla Regional Dialects to Bangla Language',
-    },
-    {
-      topic: 'Morphological Analysis_metadata',
-      paper: 'Incongruity Detection between Bangla News Headline and Body Content through Graph Neural Network',
-    },
-    {
-      topic: 'Morphological Analysis_metadata',
-      paper: 'On Evaluation of Bangla Word Analogies',
-    },
-    // Add more data as needed
-  ];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/data');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -26,6 +27,9 @@ const Graph = () => {
         <div className="hero-content flex-col">
           <div className="text-center lg:text-left mb-16">
             <h1 className="text-5xl font-bold text-center">Graph Visualization</h1>
+            <p className="py-6">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu libero in dui vestibulum eleifend nec non felis. Fusce sed nisi quis justo interdum commodo.
+            </p>
           </div>
           <div className="card shrink-0 w-full max-w-xl shadow-2xl">
             <div className="card-body">
@@ -35,12 +39,6 @@ const Graph = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="text-center mt-5">
-            Not what you're looking for?{' '}
-            <span className="underline text-[#7AB2B2] font-bold text-lg">
-              <Link to="/dashboard">Go back to dashboard.</Link>
-            </span>
           </div>
         </div>
       </div>
