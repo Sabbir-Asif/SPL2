@@ -1,8 +1,5 @@
 const neo4j = require('neo4j-driver');
-require('dotenv').config({
-  path: 'Neo4j-4d2abc3a-Created-2024-05-02.txt',
-  debug: true // to raise file/parsing errors
-});
+require('dotenv').config();
 
 const URI = process.env.NEO4J_URI;
 const USER = process.env.NEO4J_USERNAME;
