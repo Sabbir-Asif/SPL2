@@ -1,5 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../layouts/Root/Root";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import SubmitPaper from "../pages/SubmitPaper";
 
 const router = createBrowserRouter([
   {
@@ -13,15 +16,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <h1>register</h1>,
+        element: <Register></Register>,
       },
       {
         path: "/login",
-        element: <h1>Login</h1>,
+        element: <Login />,
       },
       {
         path: "/knowledge-graph",
         element: <h1>Knowledge Graph</h1>,
+      },
+      {
+        path: "/submit-paper",
+        element: <SubmitPaper></SubmitPaper>,
       },
     ],
   },
